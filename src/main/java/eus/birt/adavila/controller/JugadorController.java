@@ -28,22 +28,26 @@ public class JugadorController {
 	@Autowired
 	EquipoRepo equipoRepo;
 	
+	//Metodo para mostrar todos los jugaores
 	@GetMapping({"/",""})
 	public List <Jugador> index(){
 		return jugadorRepo.findAll();
 	}
 	
+	//Metodo para mostrar un jugador por su id
 	@GetMapping("/{id}")
 	public Jugador show(@PathVariable("id") Long id) {
 		return jugadorRepo.findById(id).orElse(null);
 	}
 	
+	//Metodo para crear un jugador
 	@PostMapping({"","/"})
 	@ResponseStatus (HttpStatus.CREATED)
 	public Jugador create(@RequestBody Jugador jugador) {
 		return jugadorRepo.save(jugador);
 	}
 	
+	//Metodo para actualizar un jugador
 	@PutMapping("/{id}")
 	@ResponseStatus (HttpStatus.CREATED)
 	public Jugador update(@RequestBody Jugador jugador,@PathVariable("id") Long id) {
@@ -58,6 +62,7 @@ public class JugadorController {
 		return jugadorRepo.save(jugadorTemp);
 	}
 	
+	//Metodo para borrar un jugador por su id
 	@DeleteMapping("/{id}")
 	@ResponseStatus (HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") Long id) {

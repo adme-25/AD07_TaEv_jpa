@@ -52,6 +52,7 @@ public class Equipo implements Serializable{
 		this.division = division;
 	}
 	
+	//Metodo de la clase equipo para añadir un jugador
 	public void anadirJugador(Jugador jugador) {
 		this.jugadores.add(jugador);
 	}

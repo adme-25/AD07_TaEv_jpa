@@ -25,22 +25,26 @@ public class EquipoController {
 	@Autowired
 	EquipoRepo equipoRepo;
 	
+	//Metodo para mostrar todos los equipos
 	@GetMapping({"/", ""})
 	public List<Equipo> index (){
 		return equipoRepo.findAll();
 	}
 	
+	//Metodo para mostrar un equipo por su id
 	@GetMapping("/{id}")
 	public Equipo show(@PathVariable("id") Long id){
 		return equipoRepo.findById(id).orElse(null);
 	}
 	
+	//Metodo para crear un equipo
 	@PostMapping({"/",""})
 	@ResponseStatus (HttpStatus.CREATED)
 	public Equipo create(@RequestBody Equipo equipo) {
 		return equipoRepo.save(equipo);
 	}
 	
+	//Metodo para actualizar un equipo
 	@PutMapping("/{id}")
 	@ResponseStatus (HttpStatus.CREATED)
 	public Equipo update(@RequestBody Equipo equipo, @PathVariable("id") Long id) {
@@ -55,12 +59,14 @@ public class EquipoController {
 		return equipoRepo.save(equipoTemp);
 	}
 	
+	//Metodo para borrar un equipo por su id
 	@DeleteMapping("/{id}")
 	@ResponseStatus (HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") Long id) {
 		equipoRepo.deleteById(id);
 	}
 
+	//Metodo para incluir un jugador en un equipo
 	@PutMapping("/{id}/")
 	@ResponseStatus (HttpStatus.CREATED)
 	public Equipo addJugador(@RequestBody Jugador jugador, @PathVariable("id") Long id) {
